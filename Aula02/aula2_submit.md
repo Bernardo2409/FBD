@@ -16,11 +16,20 @@ Considere um Sistema de Gestão de Stocks de uma empresa. O presente exercício 
 #### *a)* Identifique as entidades, atributos e relações da base de dados.
 Identify the entities, attributes, and relationships of the database.
 
-
-
-
 ```
 ... Write here your answer ...
+
+Entidades: Produto, Encomenda, Fornecedor, Tipo de fornecedor
+
+Atributos: Produto-            Código, Nome, Preço, Taxa de Iva, NºStock; 
+           Encomenda-          NºEncomenda, Data da encomenda, Fornecedor;
+           Fornecedor-         Nome, NIF, Endereço, NºFax, Condições de Pagamento;
+           Tipo de Fornecedor- Código, Descrição;
+           A relação Encomenda - Produto tem um atributo - Quantidade do Produto
+
+Relationships: Uma encomenda contém um ou mais podutos (relação N:M); 
+               Uma encomenda é feita a um único fornecedor mas um fornecedor pode ter várias encomendas (relação N:1);
+               Fornecedor tem um tipo de fornecedor, e um tipo de fornecedor pode ter vários fornecedores (relação N:1);
 
 ```
 
@@ -29,6 +38,14 @@ Specify the relationships regarding the degree, cardinality and instances mandat
 
 ```
 ... Write here your answer ...
+
+Encomenda tem participação total na relação Fornecedor - Encomenda
+Produto tem participação total na relação Produto - Encomenda
+O Fornecedor é obrigado a ter um Tipo de Fornecedor (Participação Total)
+Produto tem Participação parcial na relação Encomenda - Produto
+Fornecedor tem participação parcial na relação Encomenda- Fornecedor
+Tipo de fornecedor tem participação parcial na relação Tipo de fornecedor - Fornecedor
+
 
 ```
 

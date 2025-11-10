@@ -13,56 +13,96 @@
 ### *b)* 
 
 ```
-... Write here your answer ...
+π Fname, Minit, Lname (
+    employee
+    ⨝ Super_ssn = Boss.Ssn
+    ρ Boss (π Ssn σ Fname='Carlos' ∧ Minit='D' ∧ Lname='Gomes' employee)
+)
 ```
 
 
 ### *c)* 
 
 ```
-... Write here your answer ...
+γ Pname; sum(Hours) -> TotalHours (
+	project ⨝ Pnumber = Pno (works_on)
+)
 ```
 
 
 ### *d)* 
 
 ```
-... Write here your answer ...
+π Fname, Lname, Pname, Hours (
+	σ Dno = 3 (employee)
+	⨝
+	Ssn = Essn ∧ Hours > 20 (works_on)
+	⨝
+	Pno = Pnumber (σ Pname='Aveiro Digital' (project))
+)
 ```
 
 
 ### *e)* 
 
 ```
-... Write here your answer ...
+π Fname, Minit, Lname (
+    σ Pno=null (
+        employee ⟕ Ssn=Essn (works_on)
+    )
+)
 ```
 
 
 ### *f)* 
 
 ```
-... Write here your answer ...
+γ Dname; avg(Salary) -> AvgSalary (
+	department ⨝
+	Dnumber = Dno (σ Sex = 'F' (employee))
+)
 ```
 
 
 ### *g)* 
 
 ```
-... Write here your answer ...
+σ NumDependents≥2 (
+	γ Fname, Lname; count(Fname) -> NumDependents (
+		employee ⨝
+		Ssn = Essn (dependent)
+	)
+)
 ```
 
 
 ### *h)* 
 
 ```
-... Write here your answer ...
+π Fname, Lname (
+	σ dependent.Essn = null (
+		employee ⨝ Mgr_ssn = Ssn (department) ⟕ Ssn = Essn (dependent)
+	)
+)
 ```
 
 
 ### *i)* 
 
 ```
-... Write here your answer ...
+ProjectEmployee = project ⨝ Pno=Pnumber (
+    employee ⨝ Ssn=Essn (works_on)
+)
+
+DepartmentLocation = π department.Dnumber, Dname, Dlocation (
+    department ⨝ department.Dnumber=dept_location.Dnumber (dept_location)
+)
+
+π Ssn, Fname, Minit, Lname, Address (
+    σ dept_location.Dlocation≠'Aveiro' ∧ project.Plocation='Aveiro' (
+        ProjectEmployee ⨝ Dno=Dnumber (DepartmentLocation)
+    )
+)
 ```
 
 
@@ -71,7 +111,11 @@
 ### *a)*
 
 ```
-π nif, nome (fornecedor) - π fornecedor, nome (fornecedor ⨝ encomenda)
+π nome (
+	σ numero = null (
+		fornecedor ⟕ nif = fornecedor (encomenda)
+	)
+)
 ```
 
 ### *b)* 
@@ -84,7 +128,9 @@
 ### *c)* 
 
 ```
-... Write here your answer ...
+γ avg(NumProdutos) -> MediaProdutosPorEncomenda (
+  γ numEnc; count(codProd) -> NumProdutos (item)
+)
 ```
 
 
@@ -92,7 +138,6 @@
 
 ```
 π nif, nome, codProd, unidades (fornecedor ⨝ encomenda ⨝ item)
-
 ```
 
 
@@ -101,38 +146,53 @@
 ### *a)*
 
 ```
-... Write here your answer ...
+π nome (
+	σ pres.numUtente = null (
+		ρ pac (paciente) ⟕ pac.numUtente = pres.numUtente ρ pres (prescricao)
+	)
+)
 ```
 
 ### *b)* 
 
 ```
-γ especialidade; numprescricoes <- count(numPresc) (medico ⨝ prescricao)
-
+γ especialidade; numprescricoes <- count(numPresc) (
+	medico ⨝ prescricao
+)
 ```
 
 
 ### *c)* 
 
 ```
-... Write here your answer ...
+γ farmacia.nome; count(prescfarm.numPresc) -> NumPrescricoes (
+	(ρ prescfarm (presc_farmaco) ⨝ prescfarm.numRegFarm = farmaco.numRegFarm ρ farmaco (farmaco))
+	⨝ prescfarm.numPresc = presc.numPresc ρ presc (prescricao) ⨝ presc.farmacia = farmacia.nome ρ farmacia (farmacia)
+)
 ```
 
 
 ### *d)* 
 
 ```
-π nome (farmaco)-π nomeFarmaco (presc_farmaco ⨝ prescricao ⨝ farmaco)
+π nome (farmaco)-π nomeFarmaco (
+	presc_farmaco ⨝ prescricao ⨝ farmaco
+)
 ```
 
 ### *e)* 
 
 ```
-... Write here your answer ...
+γ farmaceutica.nome; count(*) → NumFarmacos (
+  farmaco ⨝ farmaco.numRegFarm = farmaceutica.numReg (farmaceutica)
+)
 ```
 
 ### *f)* 
 
 ```
-... Write here your answer ...
+π p1.numUtente (
+    σ p1.numUtente = p2.numUtente ∧ p1.numMedico ≠ p2.numMedico 
+    (ρ p1 (prescricao) x ρ p2 (prescricao))
+)
 ```
