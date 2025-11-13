@@ -6,7 +6,6 @@
 ### *a)*
 
 ```
-... Write here your answer ...
 A relação está em 1FN, pois os atributos são atómicos e não suporta relações dentro de relações. Não está em 2FN, porque não há dependências funcionais parciais. E não está em 3FN, porque há dependências transitivas.
 
 
@@ -21,7 +20,6 @@ It is possible to <u>underline</u> -> {A, B,.. }
 ### *b)* 
 
 ```
-... Write here your answer ...
 1FN → 2FN
 
 Eliminar dependências parciais:
@@ -68,21 +66,35 @@ Editora(Editor, Endereco_Editor)
 ### *a)*
 
 ```
-... Write here your answer ...
+A chave de R é composta pelos atributos A e B.
+
 ```
 
 
 ### *b)* 
 
 ```
-... Write here your answer ...
+Como existem dependências parciais:
+
+Para A → D, E:
+R1(A, D, E)
+
+Para B → F:
+R2(B, F)
+
+Para {A, B} → C:
+R3(A, B, C)
 ```
 
 
 ### *c)* 
 
 ```
-... Write here your answer ...
+Para F → G, H:
+R4(F, G, H)
+
+Para D → I, J:
+R5(D, I, J)
 ```
 
 
@@ -91,21 +103,31 @@ Editora(Editor, Endereco_Editor)
 ### *a)*
 
 ```
-... Write here your answer ...
+A chave de R é composta pelos atributos B e C.
 ```
 
 
 ### *b)* 
 
 ```
-... Write here your answer ...
+Para C → A:
+R1(C, A)
+
+Para D → E:
+R2(D, E)
+
+Para {B, C} → {A, C, D, E}:
+R3(B, C, D)
 ```
 
 
 ### *c)* 
 
 ```
-... Write here your answer ...
+R1(C, A)
+R2(D, E)
+R3(B, C, D)
+
 ```
 
 
@@ -115,24 +137,33 @@ Editora(Editor, Endereco_Editor)
 ### *a)*
 
 ```
-... Write here your answer ...
+A chave de R é composta pelos atributos A e B.
+
 ```
 
 ### *b)* 
 
 ```
-... Write here your answer ...
+Para A → C:
+R1(A, C)
+
+Para {A, B} → C, D, E:
+R2(A, B, D, E)
 ```
 
 
 ### *c)* 
 
 ```
-... Write here your answer ...
+Para C -> D:
+R2 (A, B, E)
+R3(C, D)
 ```
 
 ### *d)* 
 
 ```
-... Write here your answer ...
+R1(A, C)
+R2(A, B, E)
+R3(C, D)
 ```
